@@ -1,0 +1,2 @@
+- Thi GK: tạo csdl
+- Thi cuối kỳ: truy vấn
