@@ -27,14 +27,42 @@ create table NhanVien
 	TenNV nvarchar(40) UNIQUE,
 	MaNVQL char(6),
 	PHAI nvarchar(3) check (PHAI IN ('Nam', N'Nữ'))
-	primary key (MaNV)	
+	primary key (MaNV)
 )
 
 go
-alter table PhongMay add constraint FK_MayChu_MaPhong foreign key (MayChu, MaPhong) references MayTinh(MaMT, MaPM)
-alter table PhongMay add constraint FK_MaNVQL foreign key (MANVQL) references NhanVien(MaNV)
-alter table NhanVien add constraint FK_MaNVQLNV foreign key (MANVQL) references NhanVien(MaNV)
-alter table MayTinh add constraint FK_MaPM foreign key (MAPM) references PhongMay(MaPhong)
+alter table MayTinh 
+add 
+	constraint U_MayTinh_MaPhong 
+	unique (MaMT, MaPM)
+
+go
+alter table PhongMay 
+add 
+	constraint FK_PhongMay_MayTinh
+	foreign key (MayChu, MaPhong) 
+	references MayTinh(MaMT, MaPM)
+
+go
+alter table PhongMay 
+add 
+	constraint FK_PhongMay_NhanVien
+	foreign key (MANVQL) 
+	references NhanVien(MaNV)
+
+go
+alter table NhanVien 
+add
+	constraint FK_NhanVien_NhanVien
+	foreign key (MANVQL) 
+	references NhanVien(MaNV)
+
+go
+alter table MayTinh 
+add
+	constraint FK_MayTinh_PhongMay
+	foreign key (MAPM) 
+	references PhongMay(MaPhong)
 
 go
 insert into NhanVien(MaNV, TenNV, PHAI) values ('001', N'Nguyễn Văn A', 'Nam')
