@@ -298,7 +298,7 @@ WHERE CD.TENCD = N'Quản lý giáo dục' AND DT.MACD = CD.MACD AND DT.GVCNDT =
 --Q15. Cho biết tên các công việc của đề tài HTTT quản lý các trường ĐH có thời gian bắt đầu trong tháng 3/2008.
 SELECT CV.TENCV
 FROM CONGVIEC CV, DETAI DT
-WHERE DT.TENDT = N'HTTT quản lý các trường ĐH' AND DT.MADT = CV.MADT AND DATEDIFF(M,'03/01/2008',CV.NGAYBD) = 0
+WHERE DT.TENDT = N'HTTT quản lý các trường ĐH' AND DT.MADT = CV.MADT AND YEAR(CV.NGAYBD) = 2008 AND MONTH(CV.NGAYBD) = 3
 
 --Q16. Cho biết tên giáo viên và tên người quản lý chuyên môn của giáo viên đó.
 SELECT GV.HOTEN, GV_SAU.HOTEN AS GVQLCM
